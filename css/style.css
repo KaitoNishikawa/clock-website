@@ -34,6 +34,10 @@ body{
 
 .time span:last-child{
     font-size: 30px;
-    font
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 10px;
+    padding: 0 5px;
+    border-radius: 3px;
 }
 
