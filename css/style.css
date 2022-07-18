@@ -32,3 +32,8 @@ body{
     align-items: center;
 }
 
+.time span:last-child{
+    font-size: 30px;
+    font
+}
+
