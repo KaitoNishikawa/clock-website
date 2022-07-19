@@ -8,6 +8,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .datetime{
@@ -16,6 +17,8 @@ body{
     padding: 15px 10px;
     border: 3px solid;
     border-radius: 5px;
+    position: absolute;
+    top: 50px;
 }
 
 .date{
@@ -39,5 +42,31 @@ body{
     margin-top: 10px;
     padding: 0 5px;
     border-radius: 3px;
+}
+
+.stopwatch{
+    font-family: "Segoe UI", sans-serif;
+    width: 250px;    
+    padding: 15px 10px;
+    border: 3px solid;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.timer{
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control{
+    
+}
+
+.button{
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 3px
 }
 
