@@ -11,10 +11,10 @@
 <body onload="initClock()">
     <div class="datetime">
         <div class="date">
-            <span id="dayname">Day</span>,
+            <span id="year">Year</span>
             <span id="month">Month</span>
             <span id="daynum">00</span>,
-            <span id="year">Year</span>
+            <span id="dayname">Day</span>  
         </div>
         <div class="time">
             <span id="hour">00</span>:
@@ -36,11 +36,19 @@
             <button class="button" style="background-color: #73FE85" onclick="initTimer()">Start</button>
             <button class="button" style="background-color: #FE7C7C" onclick="stop()">Stop</button>
             <button class="button" onclick="reset()">Reset</button>
+
+        </div>
+        <div class="mode">
+            <input type="radio" name="mode" id = "exer" onclick="updateMode(0)">
+            <input type="radio" name="mode" id = "free" onclick="updateMode(1)">
+            <input type="radio" name="mode" id = "stdy" onclick="updateMode(2)">
+            <input type="radio" name="mode" id = "work" onclick="updateMode(3)">
+            <input type="radio" name="mode" id = "neces" onclick="updateMode(4)">
         </div>
     </div>
-
-    <script src="js/website.js"></script>
-
+    <!--timer end-->  
+    
 
 </body>
+<script src="js/website.js"></script>
 </html>
