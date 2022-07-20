@@ -49,8 +49,6 @@ function updateClock(){
 function initClock(){
     //updateClock();
     setInterval("updateClock()", 100);
-    var now = new Date();
-    console.log(now.getHours());
 }
 
 function pad(digit){
