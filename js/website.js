@@ -9,18 +9,18 @@ function updateClock(){
         sec = now.getSeconds(),
         pe = "午前";
 
-        if(hou > 12){
-            hou = hou - 12;
-            pe = "午後";
-        }
-
-        if(hou == 00){
-            hou = 12
-        }
-
         if(hou == 12){
             pe = "午後";
         }
+
+        if(hou > 12){
+            hou = hou - 12;
+            pe = "午後";
+        }        
+
+        if(hou == 0){
+            hou = 12;
+        }        
 
         yr = yr + "年"
         dnum = dnum + "日"
@@ -49,6 +49,8 @@ function updateClock(){
 function initClock(){
     //updateClock();
     setInterval("updateClock()", 100);
+    var now = new Date();
+    console.log(now.getHours());
 }
 
 function pad(digit){
