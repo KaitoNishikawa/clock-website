@@ -35,10 +35,7 @@ function updateClock(){
 
             return x;
         }
-*/
-
-        
-
+*/       
         var months = ["１月", "２月", "３月", "４月", "５月", "６月", "７月", "８月", "９月", "１０月", "１１月", "１２月"];
         var week = ["日曜日", "月掉尾", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
         var ids = ["dayname", "month", "daynum", "year", "hour", "minutes", "seconds", "period"];
@@ -94,15 +91,6 @@ function initTimer(){
 
     tempcounter = 0;
 
-    //check if mode has been changed
-    /*
-    if(chkon == 1 && y2 != -1){
-        console.log(tempcounter + " logged for " + modes[y2]);
-    }
-    */
-    y2 = y;
-    chkon = 0;
-
     //disable radio button
     document.getElementById("exer").disabled = true;
     document.getElementById("free").disabled = true;
@@ -129,21 +117,16 @@ function stop(){
     document.getElementById("stdy").disabled = false;
     document.getElementById("work").disabled = false;
     document.getElementById("neces").disabled = false;
-
-    chkon = 0;
 }
 
 function reset(){
     stop();
     sec = -1;
     updateTimer();
-    chkon = 0;    
 }
 
 var tempcounter;
 var y = -1;
-var y2 = -1;
-var chkon = 0;
 var exer = 0;
 var free = 0;
 var stdy = 0;
@@ -154,5 +137,4 @@ var modes = ["exer", "free", "stdy", "work", "neces"];
 
 function updateMode(x){
     y = x;
-    chkon = 1;
 }
