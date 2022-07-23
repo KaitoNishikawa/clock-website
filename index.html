@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Track Productivity, Habits, Time</title>
+    <link rel="shortcut icon" href="/files/favicon.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+    crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -33,11 +37,12 @@
         </div>
 
         <div class="Control">
-            <button class="button" style="background-color: #73FE85" onclick="initTimer()">Start</button>
-            <button class="button" style="background-color: #FE7C7C" onclick="stop()">Stop</button>
-            <button class="button" onclick="reset()">Reset</button>
+            <button class="button" id = "start" style="background-color: #73FE85" onclick="initStop()">Start</button>
+            <button class="button" id = "stop" style="background-color: #FE7C7C" onclick="stopStop()">Stop</button>
+            <button class="button" id = "reset" onclick="resetStop()">Reset</button>
 
         </div>
+
         <div class="mode">
             <input type="radio" name="mode" id = "exer" onclick="updateMode(0)">
             <input type="radio" name="mode" id = "free" onclick="updateMode(1)">
@@ -45,9 +50,25 @@
             <input type="radio" name="mode" id = "work" onclick="updateMode(3)">
             <input type="radio" name="mode" id = "neces" onclick="updateMode(4)">
         </div>
+
+        <div class="study">
+            <input type="checkbox" id="check" onchange="timerMode()">
+            <label for="check">Hello</label>
+        </div>
     </div>
     <!--timer end-->  
-    
+
+    <div class="modal" id="modal">
+        <div class="close-button">&times;</div>
+
+        <div class="modal-body">
+            Timer Ended 
+        </div>      
+
+        <div id="overlay">
+            
+        </div>
+    </div>
 
 </body>
 <script src="js/website.js"></script>

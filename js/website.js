@@ -13,12 +13,12 @@ function updateClock(){
             pe = "午後";
         }
 
-        if(hou > 12){
+        else if(hou > 12){
             hou = hou - 12;
             pe = "午後";
         }        
 
-        if(hou == 0){
+        else if(hou == 0){
             hou = 12;
         }        
 
@@ -63,11 +63,10 @@ function pad(digit){
 var sec = 0;
 let interval = null;
 
-function updateTimer(){
+function updateStop(){
     sec++;
     mode[y]++;
     tempcounter++;
-
 
     second = sec % 60;
     hour = Math.floor(sec / 3600);
@@ -78,7 +77,7 @@ function updateTimer(){
     document.getElementById("hour2").innerHTML = pad(hour);
 }
 
-function initTimer(){
+function initStop(){
     if(interval){
         return;
     }
@@ -92,16 +91,16 @@ function initTimer(){
     tempcounter = 0;
 
     //disable radio button
-    document.getElementById("exer").disabled = true;
-    document.getElementById("free").disabled = true;
-    document.getElementById("stdy").disabled = true;
-    document.getElementById("work").disabled = true;
-    document.getElementById("neces").disabled = true;
+    var radio = document.getElementsByName("mode");
+        for(var i = 0; i < radio.length; i++)
+        {
+            radio[i].disabled=true;
+        } 
 
-    interval = setInterval("updateTimer()", 1000);
+    interval = setInterval("updateStop()", 1000);
 }
 
-function stop(){
+function stopStop(){
     
     if(interval == null){
         return;
@@ -112,19 +111,20 @@ function stop(){
     console.log(tempcounter + " logged for " + modes[y]);
 
     //enable radio button
-    document.getElementById("exer").disabled = false;
-    document.getElementById("free").disabled = false;
-    document.getElementById("stdy").disabled = false;
-    document.getElementById("work").disabled = false;
-    document.getElementById("neces").disabled = false;
+    var radio = document.getElementsByName("mode");
+        for(var i = 0; i < radio.length; i++)
+        {
+            radio[i].disabled = false;
+        } 
 }
 
-function reset(){
-    stop();
+function resetStop(){
+    stopStop();
     sec = -1;
-    updateTimer();
+    updateStop();
 }
 
+var ringtone = new Audio("/files/hillside.mp3");
 var tempcounter;
 var y = -1;
 var exer = 0;
@@ -137,4 +137,109 @@ var modes = ["exer", "free", "stdy", "work", "neces"];
 
 function updateMode(x){
     y = x;
+}
+
+function timerMode(){   
+    
+    const stdyMode = document.querySelector("#check");    
+
+    if(stdyMode.checked){
+        stopStop();
+
+        sec = 3;
+
+        second = sec % 60;
+        hour = Math.floor(sec / 3600);
+        minute = Math.floor((sec - (hour * 3600)) / 60);   
+        
+        document.getElementById("seconds2").innerHTML = pad(second);
+        document.getElementById("minutes2").innerHTML = pad(minute);
+        document.getElementById("hour2").innerHTML = pad(hour);
+
+        document.getElementById("stdy").click();
+        
+        var radio = document.getElementsByName("mode");
+        for(var i = 0; i < radio.length; i++)
+        {
+            radio[i].disabled = true;
+        }
+        
+        var startButton = document.getElementById("start");
+        startButton.setAttribute('onclick',  'initTime();');
+
+        var resetButton = document.getElementById("reset");
+        resetButton.setAttribute('onclick',  'resetTime();');
+
+        var stopButton = document.getElementById("stop");
+        stopButton.setAttribute('onclick',  'stopTime();');
+    }
+    
+    else{
+        sec = 0
+
+        second = sec % 60;
+        hour = Math.floor(sec / 3600);
+        minute = Math.floor((sec - (hour * 3600)) / 60);   
+        
+        document.getElementById("seconds2").innerHTML = pad(second);
+        document.getElementById("minutes2").innerHTML = pad(minute);
+        document.getElementById("hour2").innerHTML = pad(hour);
+
+        var radio = document.getElementsByName("mode");
+        for(var i = 0; i < radio.length; i++)
+        {
+            radio[i].disabled = false;
+        }
+        
+        var startButton = document.getElementById("start");
+        startButton.setAttribute('onclick',  'initStop();');
+
+        var resetButton = document.getElementById("reset");
+        resetButton.setAttribute('onclick',  'resetStop();');
+
+        var stopButton = document.getElementById("stop");
+        stopButton.setAttribute('onclick',  'stopStop();');
+    }
+}
+
+function initTime(){
+    tempcounter = 0;
+    interval = setInterval("updateTime()", 1000);
+}
+
+function updateTime(){
+    sec--;
+    stdy++;
+    tempcounter++;
+
+    second = sec % 60;
+    hour = Math.floor(sec / 3600);
+    minute = Math.floor((sec - (hour * 3600)) / 60);   
+    
+    document.getElementById("seconds2").innerHTML = pad(second);
+    document.getElementById("minutes2").innerHTML = pad(minute);
+    document.getElementById("hour2").innerHTML = pad(hour);
+
+    if(sec == 0){
+        stopTime();
+        ringtone.play();
+        ringtone.loop = true;   
+    }
+}
+
+function resetTime(){
+    stopTime();
+    sec = 1501;
+    updateTime();
+}
+
+function stopTime(){
+    
+    if(interval == null){
+        return;
+    }
+
+    clearInterval(interval);
+    interval = null;
+    console.log(tempcounter + " logged for " + modes[y]);
 }
